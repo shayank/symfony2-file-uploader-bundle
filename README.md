@@ -4,7 +4,7 @@ PunkAveFileUploaderBundle
 Introduction
 ============
 
-This bundle provides multiple file uploads, based on the [BlueImp jQuery file uploader](https://github.com/blueimp/jQuery-File-Upload/) package. Both drag and drop and multiple file selection are fully supported in compatible browsers. We chose BlueImp because it has excellent backwards and forwards browser compatibility. 
+This bundle provides multiple file uploads, based on the [https://github.com/blueimp/jQuery-File-Upload/](BlueImp jQuery file uploader) package. Both drag and drop and multiple file selection are fully supported in compatible browsers. We chose BlueImp because it has excellent backwards and forwards browser compatibility. 
 
 This bundle is a fairly thin wrapper because the existing PHP uploader class provided by BlueImp is very good already and does so many excellent things straight out of the box. We provided a way to integrate it into a Symfony 2 project.
 
@@ -206,30 +206,6 @@ This single action actually implements a full REST API in which the BlueImp Uplo
 
 Again, handleFileUpload DOES NOT RETURN as the response is generated in native PHP by BlueImp's UploadHandler class.
 
-Setting the allowed file types
-------------------------------
-You can specify custom file types to divert from the default ones (which are defined in Resources/config/services.yml) by either specifing 
-them in the handleFileUpload method or parameters.yml. 
-
-***In the handleFileUpload:***
-
-    $this->get('punk_ave.file_uploader')->handleFileUpload(array(
-        'folder' => 'tmp/attachments/' . $editId,
-        'allowed_extensions' => array('zip', 'rar', 'tar')
-    ));
-
-In this case the FileUploader service will merge the default extensions with the supplied extensions and make a single regex of it. Using regular expression characters could result in errors.
-
-***Parameters.yml:***
-If you have the Symfony standard edition installed you can specify them in app/config/parameters.yml:
-
-    file_uploader.allowed_extensions:
-        - zip
-        - rar
-        - tar
-
-Doing this will override the default extensions instead of adding them!
-
 Removing Files
 ==============
 
@@ -283,29 +259,6 @@ So all of these can be readily accessed via the following URLs:
 And so on.
 
 The original names and file extensions of the files uploaded are preserved as much as possible without introducing security risks. 
-
-Limit number of uploads
------------------------
-
-You can limit the number of uploaded files by setting the `max_no_of_files` property. You could set this in parameters.yml like this:
-    
-    parameters:
-      file_uploader.max_number_of_files: 4
-
-You'll probably want to add an error handler for this case. In the template where you initialize PunkAveFileUploader set `errorCallback`
-
-    // Enable the file uploader
-    $(function() {
-      new PunkAveFileUploader({    
-        // ... other required options,
-
-        'errorCallback': function(errorObj) {
-          if (errorObj.error == 'maxNumberOfFiles') {
-            alert("Maximum uploaded files exceeded!");
-          }
-        }
-      });
-    });
 
 Limitations
 ===========

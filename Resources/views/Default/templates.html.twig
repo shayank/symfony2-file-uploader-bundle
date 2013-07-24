@@ -1,4 +1,3 @@
-{% spaceless %}
 {# Contains Underscore templates for the file uploader. #}
 {# As long as the data-* attributes stay on the appropriate elements #}
 {# you can override the markup pretty extensively in a local version #}
@@ -37,10 +36,10 @@
         <% } %>
         <div class="caption">
             <span class="filename"><%- name %></span>
-            <a rel="tooltip" title="Download Original" class="download thumbnail-action btn=" target="download" href="<%- url %>"><i class="icon-download"></i></a>
+            <a rel="tooltip" title="Download Original" class="download thumbnail-action btn" target="download" href="<%- url %>"><img class="icon-download" src="/bundles/acmetest/images/download.png" /></a>
             {# ACHTUNG: data-action="delete" matters to javascript #}
-            <a rel="tooltip" title="Delete" data-action="delete" class="delete thumbnail-action btn" href="#delete"><i class="icon-trash"></i></a>
+            <a rel="tooltip" title="Delete" data-action="delete" class="delete thumbnail-action btn" href="#delete"><img class="icon-trash" src="/bundles/acmetest/images/trash.png" /></a>
         </div>
     </li>
 </script>
-{% endspaceless %}
+

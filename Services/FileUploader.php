@@ -46,6 +46,11 @@ class FileUploader
     {
         return $this->options['file_manager']->syncFiles($options);
     }
+    
+    public function mySyncFiles($options = array())
+    {
+        return $this->options['file_manager']->mySyncFiles($options);
+    }
 
     /**
      * Handles a file upload. Call this from an action, after validating the user's
@@ -103,14 +108,14 @@ class FileUploader
         }
 
         @mkdir($uploadDir, 0777, true);
+
         $upload_handler = new \PunkAve\FileUploaderBundle\BlueImp\UploadHandler(
             array(
                 'upload_dir' => $uploadDir, 
                 'upload_url' => $webPath . '/' . $originals['folder'] . '/', 
                 'script_url' => $options['request']->getUri(),
                 'image_versions' => $sizes,
-                'accept_file_types' => $allowedExtensionsRegex,
-                'max_number_of_files' => $options['max_number_of_files'],
+                'accept_file_types' => $allowedExtensionsRegex
             ));
 
         // From https://github.com/blueimp/jQuery-File-Upload/blob/master/server/php/index.php
