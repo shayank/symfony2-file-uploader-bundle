@@ -43,7 +43,7 @@ class UploadedTmpFiles
     private $success;
     
     public function __construct() {
-        $this->success = TRUE;
+        $this->setSuccess(TRUE);
     }
 
     /**
