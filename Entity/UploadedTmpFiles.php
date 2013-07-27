@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class UploadedFiles
+class UploadedTmpFiles
 {
     /**
      * @var integer
@@ -24,17 +24,27 @@ class UploadedFiles
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=32)
+     * @ORM\Column(name="type", type="string", length=32, nullable=TRUE)
      */
     private $type;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="size", type="integer")
+     * @ORM\Column(name="size", type="integer", nullable=TRUE)
      */
     private $size;
-
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="success", type="boolean", nullable=TRUE, options={"default":TRUE})
+     */
+    private $success;
+    
+    public function __construct() {
+        $this->success = TRUE;
+    }
 
     /**
      * Get id
@@ -90,5 +100,29 @@ class UploadedFiles
     public function getSize()
     {
         return $this->size;
+    }
+
+
+    /**
+     * Set success
+     *
+     * @param boolean $success
+     * @return UploadedTmpFiles
+     */
+    public function setSuccess($success)
+    {
+        $this->success = $success;
+    
+        return $this;
+    }
+
+    /**
+     * Get success
+     *
+     * @return boolean 
+     */
+    public function getSuccess()
+    {
+        return $this->success;
     }
 }
