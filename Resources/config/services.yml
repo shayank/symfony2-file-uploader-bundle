@@ -47,18 +47,6 @@ parameters:
       folder: thumbnails
       max_width: 80
       max_height: 80
-    small:
-      folder: small
-      max_width: 320
-      max_height: 480
-    medium:
-      folder: medium
-      max_width: 640
-      max_height: 960
-    large:
-      folder: large
-      max_width: 1140
-      max_height: 1140
 
 services:
     punk_ave.file_uploader:

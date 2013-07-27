@@ -20,12 +20,22 @@ class FileUploader
     {
         return $this->options['file_manager']->getFiles($options);
     }
+    
+    public function getThumbFiles($options = array())
+    {
+        return $this->options['file_manager']->getThumbFiles($options);
+    }
 
     /**
      * Remove the folder specified by 'folder' and its contents.
      * If you pass consistent options to this method and handleFileUpload with
      * regard to paths, then you will get consistent results.
      */
+    public function removeFolder($options = array())
+    {
+        return $this->options['file_manager']->removeFolder($options);
+    }
+    
     public function removeFiles($options = array())
     {
         return $this->options['file_manager']->removeFiles($options);
@@ -115,7 +125,8 @@ class FileUploader
                 'upload_url' => $webPath . '/' . $originals['folder'] . '/', 
                 'script_url' => $options['request']->getUri(),
                 'image_versions' => $sizes,
-                'accept_file_types' => $allowedExtensionsRegex
+                'accept_file_types' => $allowedExtensionsRegex,
+                'new_name' => $options['new_name']
             ));
 
         // From https://github.com/blueimp/jQuery-File-Upload/blob/master/server/php/index.php
@@ -142,7 +153,7 @@ class FileUploader
                 if (isset($_REQUEST['_method']) && $_REQUEST['_method'] === 'DELETE') {
                     $upload_handler->delete();
                 } else {
-                    $upload_handler->post();
+                    $upload_handler->myPost();
                 }
                 break;
             case 'DELETE':
@@ -155,5 +166,10 @@ class FileUploader
         // Without this Symfony will try to respond; the BlueImp upload handler class already did,
         // so it's time to hush up
         exit(0);
+    }
+    
+    public function renameFile($options = array()){
+        $options = array_merge($this->options, $options);
+        
     }
 }

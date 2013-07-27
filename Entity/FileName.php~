@@ -1,0 +1,65 @@
+<?php
+
+namespace PunkAve\FileUploaderBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FileName
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class FileName
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="FileName_seq", initialValue=1246558, allocationSize=50)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="extension", type="string", length=16, nullable=TRUE)
+     */
+    private $extension;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set extension
+     *
+     * @param string $extension
+     * @return FileName
+     */
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+    
+        return $this;
+    }
+
+    /**
+     * Get extension
+     *
+     * @return string 
+     */
+    public function getExtension()
+    {
+        return $this->extension;
+    }
+}
