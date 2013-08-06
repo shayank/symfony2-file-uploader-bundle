@@ -417,6 +417,8 @@ class UploadHandler
         }
         echo $json;
     }
+    
+    //the difference between post() & myPost() is just the new_name insted of name
     public function myPost() {
         if (isset($_REQUEST['_method']) && $_REQUEST['_method'] === 'DELETE') {
             return $this->delete();

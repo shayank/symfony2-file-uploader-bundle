@@ -174,6 +174,9 @@ class FileManager
         }
     }
     
+    //the difference between syncFiles & mySyncFiles is just save images with defferent size to different location
+    //in this case thumbnails images save to web/uploads/img/thumbnails
+    //and originals images save to img/originals
     public function mySyncFiles($options = array())
     {
         $options = array_merge($this->options, $options);
